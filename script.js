@@ -31,11 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Send a POST request to the /train endpoint
-            const response = await fetch(`/train?text=${encodeURIComponent(text)}`, {
+            // Send data in the request body as JSON
+            const response = await fetch('/train', { // No query parameters here
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json' // Correctly specify content type
+                },
+                body: JSON.stringify({ text: text }) // Send the text in a JSON body
             });
 
             if (response.ok) {
