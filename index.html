@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proto-LLM UI</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">Proto-LLM Interface</h1>
+
+        <!-- Training Section -->
+        <div class="mb-8 p-6 bg-blue-50 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-4">Train the LLM</h2>
+            <textarea id="trainingText" class="w-full p-3 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-700 resize-y" rows="6" placeholder="Enter text to train the Proto-LLM..."></textarea>
+            <button id="trainButton" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">Train LLM</button>
+            <p id="trainStatus" class="mt-3 text-sm text-center text-blue-600"></p>
+        </div>
+
+        <!-- Query Section -->
+        <div class="p-6 bg-green-50 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">Query the LLM</h2>
+            <input type="text" id="promptInput" class="w-full p-3 border border-green-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-700" placeholder="Enter your prompt...">
+            <div class="mt-4 flex items-center justify-between">
+                <label for="energySlider" class="text-green-800 font-medium mr-4">Talkativeness (0-9):</label>
+                <input type="range" id="energySlider" min="0" max="9" value="8" class="flex-grow h-2 bg-green-200 rounded-lg appearance-none cursor-pointer">
+                <span id="energyValue" class="ml-4 text-green-800 font-bold">8</span>
+            </div>
+            <button id="queryButton" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">Generate Message</button>
+            <div id="responseContainer" class="mt-6 p-4 bg-green-100 border border-green-300 rounded-lg text-gray-800 min-h-[80px] flex items-center justify-center">
+                <p id="llmResponse" class="text-center text-gray-600 italic">LLM response will appear here...</p>
+            </div>
+            <p id="queryStatus" class="mt-3 text-sm text-center text-green-600"></p>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
