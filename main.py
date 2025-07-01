@@ -45,8 +45,8 @@ class ProtoLLM:
             word_list.append(self.next_word(word_list[-1]))
         return word_list
 
-    def gen_message(self, message):
-        word_list = self.gen_word_list(message.split())
+    def gen_message(self, message, energy=0.8):
+        word_list = self.gen_word_list(message.split(), energy)
         message = ""
         for i in range(len(word_list) - 1):
             message += word_list[i] + " "
@@ -71,9 +71,21 @@ def main():
                 print(f"{file_name} does not exist. Please try again.")
 
         elif choice == "2":
+            energy = 0.8
+
+            try:
+                energy = float(input("Please enter a number from 0 to 9 indicating how talkative you want the Proto-LLM to be: ")) / 10.0
+                if energy < 0:
+                    energy = 0
+                elif energy > 0.9:
+                    energy = 0.9
+
+            except ValueError as e:
+                print("")
+
             prompt = input("Please enter a prompt: ")
             print("The Proto-LLM is thinking...")
-            print(llm.gen_message(prompt))
+            print(llm.gen_message(prompt, energy))
 
         elif choice == "3":
             break
